@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.app_compat
+    implementation deps.support.recyclerview
     implementation deps.kotlin.stdlib
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions

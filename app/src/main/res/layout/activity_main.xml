@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="userModel"
             type="com.cqebd.student.UserViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.cqebd.student.BinderAdapter" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <Button
-            android:text="按钮1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="@{()->userModel.modifyName()}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="按钮1" />
+
         <Button
-            android:text="按钮2"
-            android:onClick="@{()->userModel.modifyName2()}"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="@{()->userModel.modifyName2()}"
+            android:text="按钮2" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->adapter.refreshData()}"
+            android:text="按钮3刷新rv" />
 
         <TextView
             android:layout_width="match_parent"
@@ -32,6 +46,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(userModel.getUser().age)}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adapter="@{adapter}"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 
