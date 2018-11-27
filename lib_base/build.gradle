@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -6,7 +6,6 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion build_versions.compile_sdk
     defaultConfig {
-        applicationId "com.cqebd.student"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
@@ -31,16 +30,21 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':lib_base')
+    api deps.support.app_compat
+    api deps.support.recyclerview
+    api deps.support.constraint_layout
+    api deps.kotlin.stdlib
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    api deps.architecture.navigation_fragment
+    api deps.architecture.navigation_ui
+    api deps.alibaba.arouter_api
+
     kapt deps.kapt.arouter_compiler
     kapt deps.kapt.databinding_compiler
 }
