@@ -1,4 +1,4 @@
-package com.cqebd.student
+package com.xiaofu.student
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.cqebd.student.databinding.ItemTestBinding
+import com.xiaofu.student.databinding.ItemTestBinding
 
 class BinderAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val list = ArrayList<String>()

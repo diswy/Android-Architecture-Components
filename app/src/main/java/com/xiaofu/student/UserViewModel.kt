@@ -1,6 +1,5 @@
-package com.cqebd.student
+package com.xiaofu.student
 
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
