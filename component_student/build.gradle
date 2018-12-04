@@ -35,18 +35,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api deps.support.app_compat
-    api deps.support.recyclerview
-    api deps.support.constraint_layout
-    api deps.kotlin.stdlib
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    api deps.architecture.navigation_fragment
-    api deps.architecture.navigation_ui
-    api deps.alibaba.arouter_api
-    api deps.anko.commons
-    api deps.anko.coroutines
-    api deps.retrofit.runtime
+    implementation project(':lib_base')
 
     kapt deps.kapt.arouter_compiler
     kapt deps.kapt.databinding_compiler

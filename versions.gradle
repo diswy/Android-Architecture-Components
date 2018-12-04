@@ -20,6 +20,7 @@ versions.navigation = "1.0.0-alpha07"
 versions.databinding = "3.2.1"
 versions.arouter_api = "1.4.1"
 versions.arouter_compiler = "1.2.2"
+versions.anko = "0.10.8"
 
 def deps = [:]
 
@@ -65,6 +66,13 @@ kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
 deps.kotlin = kotlin
+
+def anko = [:]
+anko.all = "org.jetbrains.anko:anko:$versions.anko"
+anko.commons = "org.jetbrains.anko:anko-commons:$versions.anko"
+anko.design = "org.jetbrains.anko:anko-design:$versions.anko"
+anko.coroutines = "org.jetbrains.anko:anko-coroutines:$versions.anko"
+deps.anko = anko
 
 def alibaba = [:]
 alibaba.arouter_api = "com.alibaba:arouter-api:$versions.arouter_api"

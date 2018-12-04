@@ -6,14 +6,18 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import org.jetbrains.anko.AnkoLogger
+import kotlin.coroutines.CoroutineContext
 
 /**
  * 封装基础层，避免DataBinding过渡滥用
  * 封装部分通用方法
  * Created by @author xiaofu on 2018/12/3.
  */
-abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
+abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
 
     protected lateinit var TAG: String
     /**
@@ -22,6 +26,11 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
      */
     protected val log = AnkoLogger("xiaofu")
 
+    protected lateinit var job: Job
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
+
     /**
      * 获取视图ID
      */
@@ -29,6 +38,7 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        job = Job()
         TAG = componentName.className
         /**
          * 不同于style中的半透明状态栏，此设置为全屏沉浸式
@@ -41,6 +51,11 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
         }
         setView()
         initialize()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 
     protected open fun isFullScreen() = false
