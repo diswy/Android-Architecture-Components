@@ -6,9 +6,8 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import com.xiaofu.lib.base.timer.ITimer
+import kotlinx.coroutines.*
 import org.jetbrains.anko.AnkoLogger
 import kotlin.coroutines.CoroutineContext
 
@@ -88,4 +87,20 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    /**
+     * 计时任务,如果只关心过程或结果可使用子类接口
+     * @param second 秒
+     * @param timer 回调
+     */
+    protected open fun timer(second: Int, timer: ITimer) {
+        launch {
+            for (i in second downTo 1) {
+                timer.onTime(i)
+                delay(1000L)
+            }
+            timer.onTimeEnd()
+        }
+    }
+
 }

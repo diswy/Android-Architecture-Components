@@ -47,6 +47,7 @@ dependencies {
     api deps.anko.commons
     api deps.anko.coroutines
     api deps.retrofit.runtime
+    api deps.retrofit.gson
 
     kapt deps.kapt.arouter_compiler
     kapt deps.kapt.databinding_compiler
