@@ -1,5 +1,6 @@
 package com.xiaofu.student.net
 
+import com.xiaofu.student.entity.movie
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

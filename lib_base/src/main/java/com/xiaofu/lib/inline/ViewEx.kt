@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 
 /**
  * 幽雅的过滤重复点击，默认300ms
+ * @param time 需要过滤的时间，单位ms
  */
 @UseExperimental(ObsoleteCoroutinesApi::class)
 fun View.onClick(time: Long = 300L, action: suspend (View) -> Unit) {

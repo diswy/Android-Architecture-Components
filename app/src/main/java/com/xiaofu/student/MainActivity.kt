@@ -5,7 +5,7 @@ import com.xiaofu.lib.base.BaseToolbarBindActivity
 import com.xiaofu.lib.inline.onClick
 import com.xiaofu.student.databinding.ActivityMainBinding
 import com.xiaofu.student.net.ApiService
-import com.xiaofu.student.net.movie
+import com.xiaofu.student.entity.movie
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.info
@@ -31,6 +31,10 @@ class MainActivity : BaseToolbarBindActivity<ActivityMainBinding>() {
         btnView.onClick {
             i++
             println("--->>>$i")
+        }
+
+        launch {
+            getTest()
         }
     }
 
