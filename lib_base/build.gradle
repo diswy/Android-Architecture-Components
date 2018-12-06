@@ -45,10 +45,17 @@ dependencies {
     api deps.architecture.navigation_ui
     api deps.alibaba.arouter_api
     api deps.anko.commons
-    api deps.anko.coroutines
+    api deps.anko.design
+    api deps.kotlin.coroutines
     api deps.retrofit.runtime
     api deps.retrofit.gson
+    api (deps.glide.core){
+        exclude group: "com.android.support"
+    }
+    api deps.dagger2.core
 
     kapt deps.kapt.arouter_compiler
     kapt deps.kapt.databinding_compiler
+    kapt deps.kapt.glide
+    kapt deps.kapt.dagger2
 }

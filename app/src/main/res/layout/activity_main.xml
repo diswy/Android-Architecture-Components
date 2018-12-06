@@ -2,78 +2,98 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="userModel"
-            type="com.xiaofu.student.UserViewModel" />
-
-        <variable
-            name="adapter"
-            type="com.xiaofu.student.BinderAdapter" />
-    </data>
-
     <LinearLayout
         android:id="@+id/group"
-        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->userModel.modifyName()}"
-            android:text="按钮1" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->userModel.modifyName2()}"
-            android:text="按钮2" />
-
-        <Button
-            android:id="@+id/btnRefresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->adapter.refreshData()}"
-            android:text="按钮3刷新rv" />
-
-        <Button
-            android:id="@+id/btnView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="按钮4过滤" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{userModel.getUser().name}" />
-
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(userModel.getUser().age)}" />
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_weight="1"
-            android:adapter="@{adapter}"
-            android:overScrollMode="never"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="@{()->userModel.modifyName()}"-->
+            <!--android:text="按钮1" />-->
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="@{()->userModel.modifyName2()}"-->
+            <!--android:text="按钮2" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btnRefresh"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="@{()->adapter.refreshData()}"-->
+            <!--android:text="按钮3刷新rv" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btnView"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="按钮4过滤" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@{userModel.getUser().name}" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@{String.valueOf(userModel.getUser().age)}" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/time"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/iv"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="10dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/iv2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<androidx.recyclerview.widget.RecyclerView-->
+            <!--android:id="@+id/rv"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:adapter="@{adapter}"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:visibility="gone"-->
+            <!--app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
 
         <com.ashokvarma.bottomnavigation.BottomNavigationBar
             android:id="@+id/mainTab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

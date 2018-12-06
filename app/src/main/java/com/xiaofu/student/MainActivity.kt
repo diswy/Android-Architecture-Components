@@ -1,14 +1,21 @@
 package com.xiaofu.student
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
+import com.ashokvarma.bottomnavigation.BottomNavigationItem
+import com.xiaofu.lib.base.BaseBindActivity
 import com.xiaofu.lib.base.BaseToolbarBindActivity
+import com.xiaofu.lib.inline.loadUrl
+import com.xiaofu.lib.inline.loadUrlHigh
 import com.xiaofu.lib.inline.onClick
 import com.xiaofu.student.databinding.ActivityMainBinding
-import com.xiaofu.student.net.ApiService
 import com.xiaofu.student.entity.movie
+import com.xiaofu.student.net.ApiService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,31 +25,29 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class MainActivity : BaseToolbarBindActivity<ActivityMainBinding>() {
+class MainActivity : BaseBindActivity<ActivityMainBinding>() {
     override fun getView(): Int {
         return R.layout.activity_main
     }
 
     override fun initialize(binding: ActivityMainBinding) {
-        binding.userModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        binding.setLifecycleOwner(this)
-        var i = 0
+//        binding.userModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+//        binding.setLifecycleOwner(this)
 
-        btnView.onClick {
-            i++
-            println("--->>>$i")
-        }
+        binding.mainTab.addItem(BottomNavigationItem(R.drawable.main_tab_video, "首页").setActiveColor(Color.parseColor("#33e5e5")))
+                .addItem(BottomNavigationItem(R.drawable.main_tab_mine, "我的").setActiveColor(Color.parseColor("#33e5e5")))
+                .initialise()
 
-        launch {
-            getTest()
-        }
+
+//        // 默认使用过滤300ms之内的点击事件
+//        btnView.onClick {
+//            it.snackbar("Hi there", "取消") { toast("我点击了取消") }
+//        }
+//
+//        iv.loadUrl(this, "http://img.hb.aicdn.com/0601ba0c597f3126da59eed23938c6ba8770d6771d0d5-F0veQO_fw658")
+//        iv2.loadUrlHigh(this, "http://img.hb.aicdn.com/0601ba0c597f3126da59eed23938c6ba8770d6771d0d5-F0veQO_fw658")
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        log.info { "结束了~" }
-    }
 
     suspend fun getTest() {
         log.info { "No.3  开始请求" }

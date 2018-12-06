@@ -20,6 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+# OkHttp3 + retrofit2混淆规则
 # A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
@@ -72,6 +73,19 @@
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
 }
+
+# Glide混淆规则
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# If you're targeting any API level less than Android API 27, also include:
+#-dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
+# for DexGuard only
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 # 自定义实体不参与混淆
 -keep class com.xiaofu.student.entity.**{*;}
