@@ -1,4 +1,4 @@
-package com.xiaofu.lib.base
+package com.xiaofu.lib.base.activity
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -15,7 +15,7 @@ abstract class BaseBindActivity<T : ViewDataBinding> : BaseActivity() {
     protected lateinit var binding: T
 
     override fun setView() {
-        binding = DataBindingUtil.setContentView(this, getView())
+        binding = DataBindingUtil.setContentView(this, getLayoutRes())
     }
 
     override fun initialize() {
@@ -25,6 +25,5 @@ abstract class BaseBindActivity<T : ViewDataBinding> : BaseActivity() {
     protected open fun initialize(binding: T) {
 
     }
-
 
 }

@@ -43,6 +43,7 @@ dependencies {
     implementation project(':lib_base')
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.1.0'
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
     kapt deps.kapt.arouter_compiler
     kapt deps.kapt.databinding_compiler
     kapt deps.kapt.glide

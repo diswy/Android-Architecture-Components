@@ -1,3 +1,3 @@
 include ':app'
 include ':lib_base'
-include ':component_student'
+include ':common_student'

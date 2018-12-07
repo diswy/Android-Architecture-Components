@@ -1,4 +1,4 @@
-package com.xiaofu.lib.base
+package com.xiaofu.lib.base.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
     /**
      * 获取视图ID
      */
-    abstract fun getView(): Int
+    abstract fun getLayoutRes(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +50,7 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
         }
         setView()
         initialize()
+        bindListener()
     }
 
     override fun onDestroy() {
@@ -58,13 +59,18 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
     }
 
     protected open fun isFullScreen() = false
+
     protected open fun isKeepScreenOn() = false
 
     protected open fun setView() {
-        setContentView(getView())
+        setContentView(getLayoutRes())
     }
 
     protected open fun initialize() {
+
+    }
+
+    protected open fun bindListener() {
 
     }
 

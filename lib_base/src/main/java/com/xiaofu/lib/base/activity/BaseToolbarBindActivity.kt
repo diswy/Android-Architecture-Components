@@ -1,4 +1,4 @@
-package com.xiaofu.lib.base
+package com.xiaofu.lib.base.activity
 
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -15,6 +15,6 @@ abstract class BaseToolbarBindActivity<T : ViewDataBinding> : BaseBindActivity<T
     override fun setView() {
         setContentView(R.layout.activity_base_toolbar_bind)
         val parent = findViewById<FrameLayout>(R.id.container)
-        binding = DataBindingUtil.inflate(LayoutInflater.from(this), getView(), parent, true)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(this), getLayoutRes(), parent, true)
     }
 }

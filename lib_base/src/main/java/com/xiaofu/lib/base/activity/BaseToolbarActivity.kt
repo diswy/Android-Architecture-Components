@@ -1,4 +1,4 @@
-package com.xiaofu.lib.base
+package com.xiaofu.lib.base.activity
 
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -13,6 +13,6 @@ abstract class BaseToolbarActivity : BaseActivity() {
     override fun setView() {
         setContentView(R.layout.activity_base_toolbar_bind)
         val parent = findViewById<FrameLayout>(R.id.container)
-        LayoutInflater.from(this).inflate(getView(),parent,true)
+        LayoutInflater.from(this).inflate(getLayoutRes(),parent,true)
     }
 }

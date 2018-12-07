@@ -1,21 +1,18 @@
 package com.xiaofu.student
 
 import android.graphics.Color
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
-import com.xiaofu.lib.base.BaseBindActivity
-import com.xiaofu.lib.base.BaseToolbarBindActivity
-import com.xiaofu.lib.inline.loadUrl
-import com.xiaofu.lib.inline.loadUrlHigh
-import com.xiaofu.lib.inline.onClick
+import com.xiaofu.lib.base.activity.BaseBindActivity
 import com.xiaofu.student.databinding.ActivityMainBinding
 import com.xiaofu.student.entity.movie
 import com.xiaofu.student.net.ApiService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.warn
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,19 +22,62 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class MainActivity : BaseBindActivity<ActivityMainBinding>() {
-    override fun getView(): Int {
+class MainActivity : BaseBindActivity<ActivityMainBinding>(), BottomNavigationBar.OnTabSelectedListener {
+
+    override fun onTabReselected(position: Int) {}
+
+    override fun onTabUnselected(position: Int) {}
+
+    override fun onTabSelected(position: Int) {
+        log.info("onTabSelected pos :$position")
+        replaceFragments(position)
+    }
+
+    override fun getLayoutRes(): Int {
         return R.layout.activity_main
     }
 
     override fun initialize(binding: ActivityMainBinding) {
 //        binding.userModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 //        binding.setLifecycleOwner(this)
+        val a = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        log.warn { "frag activity:$a" }
+        a.getUser().observe(this, Observer {
+            testTv.text = it.name
+        })
+        testBtn.setOnClickListener {
+            a.modifyName()
+        }
 
         binding.mainTab.addItem(BottomNavigationItem(R.drawable.main_tab_video, "首页").setActiveColor(Color.parseColor("#33e5e5")))
                 .addItem(BottomNavigationItem(R.drawable.main_tab_mine, "我的").setActiveColor(Color.parseColor("#33e5e5")))
+                .setBarBackgroundColor(R.color.colorPrimary)
                 .initialise()
+        binding.mainTab.selectTab(0)
 
+        binding.mainTab.setTabSelectedListener(this)
+        replaceFragments(0)
+
+//        launch {
+//            for (i in 1..50){
+//                log.info { "what  launch:$this" }
+//                delay(1000L)
+//            }
+//        }
+//
+//        GlobalScope.launch {
+//            for (i in 1..50){
+//                log.info { "what  GlobalScope:$this" }
+//                delay(1000L)
+//            }
+//        }
+//        launch(Dispatchers.Main) {
+//            for (i in 1..50){
+//                log.info { "what  launch  Main:$this" }
+//                testTv.text = i.toString()
+//                delay(1000L)
+//            }
+//        }
 
 //        // 默认使用过滤300ms之内的点击事件
 //        btnView.onClick {
@@ -46,6 +86,25 @@ class MainActivity : BaseBindActivity<ActivityMainBinding>() {
 //
 //        iv.loadUrl(this, "http://img.hb.aicdn.com/0601ba0c597f3126da59eed23938c6ba8770d6771d0d5-F0veQO_fw658")
 //        iv2.loadUrlHigh(this, "http://img.hb.aicdn.com/0601ba0c597f3126da59eed23938c6ba8770d6771d0d5-F0veQO_fw658")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        log.info { "tick tack activity destroy" }
+
+    }
+
+    private fun replaceFragments(position: Int) {
+        supportFragmentManager.beginTransaction().apply {
+            when (position) {
+                0 -> replace(R.id.home_activity_frag_container, BlankFragment.newInstance("",""))
+//                1 -> replace(R.id.home_activity_frag_container, fragment2)
+//                2 -> replace(R.id.home_activity_frag_container, fragment3)
+//                3 -> replace(R.id.home_activity_frag_container, fragment4)
+//                4 -> replace(R.id.home_activity_frag_container, fragment5)
+//                else -> replace(R.id.home_activity_frag_container, fragment6)
+            }
+        }.commitAllowingStateLoss()
     }
 
 
