@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModelProviders
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.xiaofu.lib.base.activity.BaseBindActivity
+import com.xiaofu.lib.base.http.HttpManager
 import com.xiaofu.student.databinding.ActivityMainBinding
 import com.xiaofu.student.entity.movie
 import com.xiaofu.student.net.ApiService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.info
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.warn
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,6 +59,25 @@ class MainActivity : BaseBindActivity<ActivityMainBinding>(), BottomNavigationBa
 
         binding.mainTab.setTabSelectedListener(this)
         replaceFragments(0)
+
+
+        info { "abc???zhenshi =${HttpManager.INSTANCE.retrofit}" }
+        HttpManager.INSTANCE.retrofit.create(ApiService::class.java)
+                .getMovieS()
+                .enqueue(object : Callback<String> {
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+//                        cont.resumeWithException(t)
+                    }
+
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+//                        log.info { "No.7  网络请求结束" }
+                        if (response.body() is String){
+                            toast("hahah S")
+                        }
+                        log.info(response.body())
+//                        cont.resume(response.body()!!)
+                    }
+                })
 
 //        launch {
 //            for (i in 1..50){

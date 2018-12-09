@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.xiaofu.lib.base.fragment.BaseFragment
+import com.xiaofu.lib.base.http.HttpManager
 import kotlinx.android.synthetic.main.fragment_blank.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -74,6 +75,10 @@ class BlankFragment : BaseFragment() {
 //                delay(1000L)
 //            }
 //        }
+
+        info { "abc???zhenshi Fragment=${HttpManager.INSTANCE.retrofit}" }
+
+
     }
 
     override fun bindListener() {

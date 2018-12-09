@@ -54,6 +54,9 @@ dependencies {
     }
     api deps.dagger2.core
 
+    debugApi 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseApi 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
     kapt deps.kapt.arouter_compiler
     kapt deps.kapt.databinding_compiler
     kapt deps.kapt.glide
