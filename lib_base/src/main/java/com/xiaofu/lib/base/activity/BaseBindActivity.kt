@@ -22,8 +22,6 @@ abstract class BaseBindActivity<T : ViewDataBinding> : BaseActivity() {
         initialize(binding)
     }
 
-    protected open fun initialize(binding: T) {
-
-    }
+    abstract fun initialize(binding: T)
 
 }

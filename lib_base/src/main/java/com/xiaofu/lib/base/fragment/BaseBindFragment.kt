@@ -27,8 +27,6 @@ abstract class BaseBindFragment<T : ViewDataBinding> : BaseFragment() {
         initialize(activity, binding)
     }
 
-    protected open fun initialize(activity: FragmentActivity, binding: T) {
-
-    }
+    abstract fun initialize(activity: FragmentActivity, binding: T)
 
 }

@@ -55,9 +55,7 @@ abstract class BaseFragment : Fragment(), AnkoLogger, CoroutineScope {
         job.cancel()
     }
 
-    protected open fun initialize(activity: FragmentActivity) {
-
-    }
+    abstract fun initialize(activity: FragmentActivity)
 
     protected open fun bindListener() {
 

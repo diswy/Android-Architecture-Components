@@ -1,6 +1,7 @@
 package com.xiaofu.lib.base.activity
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -41,9 +42,19 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
         TAG = componentName.className
         /**
          * 不同于style中的半透明状态栏，此设置为全屏沉浸式
+         * 后一种为透明状态栏样式
          */
         if (isFullScreen()) {
             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            if (isStatusDarkMode()) {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
+        } else if (isTranslucentMode()) {
+            val decorView = window.decorView
+            val option = if (isStatusDarkMode()) View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            else View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            decorView.systemUiVisibility = option
+            window.statusBarColor = Color.TRANSPARENT
         }
         if (isKeepScreenOn()) {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -62,13 +73,15 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger, CoroutineScope {
 
     protected open fun isKeepScreenOn() = false
 
+    protected open fun isTranslucentMode() = false
+
+    protected open fun isStatusDarkMode() = false
+
     protected open fun setView() {
         setContentView(getLayoutRes())
     }
 
-    protected open fun initialize() {
-
-    }
+    abstract fun initialize()
 
     protected open fun bindListener() {
 

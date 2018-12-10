@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.alibaba.android.arouter.launcher.ARouter
 import com.xiaofu.lib.base.fragment.BaseFragment
 import com.xiaofu.lib.base.http.HttpManager
 import kotlinx.android.synthetic.main.fragment_blank.*
@@ -35,6 +36,8 @@ class BlankFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         info("->：onCreate")
+        log.warn { "frag frag:${ARouter.getInstance().build("/ebd/student/user").navigation() as Fragment}" }
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)

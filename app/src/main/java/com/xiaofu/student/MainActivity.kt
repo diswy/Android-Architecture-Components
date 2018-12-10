@@ -1,8 +1,10 @@
 package com.xiaofu.student
 
 import android.graphics.Color
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.alibaba.android.arouter.launcher.ARouter
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.xiaofu.lib.base.activity.BaseBindActivity
@@ -12,9 +14,7 @@ import com.xiaofu.student.entity.movie
 import com.xiaofu.student.net.ApiService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
-import org.jetbrains.anko.info
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.warn
+import org.jetbrains.anko.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +31,6 @@ class MainActivity : BaseBindActivity<ActivityMainBinding>(), BottomNavigationBa
     override fun onTabUnselected(position: Int) {}
 
     override fun onTabSelected(position: Int) {
-        log.info("onTabSelected pos :$position")
         replaceFragments(position)
     }
 
@@ -43,13 +42,17 @@ class MainActivity : BaseBindActivity<ActivityMainBinding>(), BottomNavigationBa
 //        binding.userModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 //        binding.setLifecycleOwner(this)
         val a = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        log.warn { "frag activity:$a" }
         a.getUser().observe(this, Observer {
             testTv.text = it.name
         })
         testBtn.setOnClickListener {
-            a.modifyName()
+//            a.modifyName()
+            ARouter.getInstance()
+                    .build("/ebd/student/login")
+                    .navigation()
         }
+
+        log.warn { "frag main:${ARouter.getInstance().build("/ebd/student/user").navigation() as Fragment}" }
 
         binding.mainTab.addItem(BottomNavigationItem(R.drawable.main_tab_video, "首页").setActiveColor(Color.parseColor("#33e5e5")))
                 .addItem(BottomNavigationItem(R.drawable.main_tab_mine, "我的").setActiveColor(Color.parseColor("#33e5e5")))
@@ -118,8 +121,16 @@ class MainActivity : BaseBindActivity<ActivityMainBinding>(), BottomNavigationBa
     private fun replaceFragments(position: Int) {
         supportFragmentManager.beginTransaction().apply {
             when (position) {
-                0 -> replace(R.id.home_activity_frag_container, BlankFragment.newInstance("",""))
-//                1 -> replace(R.id.home_activity_frag_container, fragment2)
+                0 -> {
+                    val a= BlankFragment.newInstance("","")
+                    log.error { "--->>>0:$a" }
+                    replace(R.id.home_activity_frag_container, a)
+                }
+                1 -> {
+                    val a = ARouter.getInstance().build("/ebd/student/user").navigation() as Fragment
+                    log.error { "--->>>1:$a" }
+                    replace(R.id.home_activity_frag_container, a)
+                }
 //                2 -> replace(R.id.home_activity_frag_container, fragment3)
 //                3 -> replace(R.id.home_activity_frag_container, fragment4)
 //                4 -> replace(R.id.home_activity_frag_container, fragment5)
