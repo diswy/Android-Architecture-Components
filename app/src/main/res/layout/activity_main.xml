@@ -9,12 +9,25 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="20dp"
+        <Button
+            android:layout_margin="40dp"
+            android:padding="15dp"
+            android:minHeight="0dp"
             android:id="@+id/testTv"
             android:textSize="22sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="123456"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.xiaofu.lib.view.FancyButton
+            android:text="123456"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/testBtn"
             android:layout_width="wrap_content"
