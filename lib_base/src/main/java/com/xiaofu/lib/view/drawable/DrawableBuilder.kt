@@ -1,10 +1,8 @@
-package com.xiaofu.lib.utils.drawable
+package com.xiaofu.lib.view.drawable
 
-import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.StateSet
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
@@ -252,7 +250,7 @@ class DrawableBuilder {
             pressedDrawable.setColor(it)
         }
         strokeColorPressed?.let {
-            com.xiaofu.lib.utils.drawable.setStrokeColor(pressedDrawable, it)
+            com.xiaofu.lib.view.drawable.setStrokeColor(pressedDrawable, it)
         }
         return pressedDrawable
     }
@@ -266,7 +264,7 @@ class DrawableBuilder {
             disabledDrawable.setColor(it)
         }
         strokeColorDisabled?.let {
-            com.xiaofu.lib.utils.drawable.setStrokeColor(disabledDrawable, it)
+            com.xiaofu.lib.view.drawable.setStrokeColor(disabledDrawable, it)
         }
         return disabledDrawable
     }
@@ -280,7 +278,7 @@ class DrawableBuilder {
             selectedDrawable.setColor(it)
         }
         strokeColorSelected?.let {
-            com.xiaofu.lib.utils.drawable.setStrokeColor(selectedDrawable, it)
+            com.xiaofu.lib.view.drawable.setStrokeColor(selectedDrawable, it)
         }
         return selectedDrawable
     }
@@ -295,20 +293,20 @@ class DrawableBuilder {
         properties.apply {
             drawable.shape = shape
             if (shape == GradientDrawable.RING) {
-                com.xiaofu.lib.utils.drawable.setInnerRadius(drawable, innerRadius)
-                com.xiaofu.lib.utils.drawable.setInnerRadiusRatio(drawable, innerRadiusRatio)
-                com.xiaofu.lib.utils.drawable.setThickness(drawable, thickness)
-                com.xiaofu.lib.utils.drawable.setThicknessRatio(drawable, thicknessRatio)
-                com.xiaofu.lib.utils.drawable.setUseLevelForShape(drawable, useLevelForRing)
+                com.xiaofu.lib.view.drawable.setInnerRadius(drawable, innerRadius)
+                com.xiaofu.lib.view.drawable.setInnerRadiusRatio(drawable, innerRadiusRatio)
+                com.xiaofu.lib.view.drawable.setThickness(drawable, thickness)
+                com.xiaofu.lib.view.drawable.setThicknessRatio(drawable, thicknessRatio)
+                com.xiaofu.lib.view.drawable.setUseLevelForShape(drawable, useLevelForRing)
             }
             drawable.cornerRadii = getCornerRadii()
             if (useGradient) {
                 drawable.gradientType = type
-                com.xiaofu.lib.utils.drawable.setGradientRadiusType(drawable, gradientRadiusType)
-                com.xiaofu.lib.utils.drawable.setGradientRadius(drawable, gradientRadius)
+                com.xiaofu.lib.view.drawable.setGradientRadiusType(drawable, gradientRadiusType)
+                com.xiaofu.lib.view.drawable.setGradientRadius(drawable, gradientRadius)
                 drawable.setGradientCenter(centerX, centerY)
-                com.xiaofu.lib.utils.drawable.setOrientation(drawable, getOrientation())
-                com.xiaofu.lib.utils.drawable.setColors(drawable, getColors())
+                com.xiaofu.lib.view.drawable.setOrientation(drawable, getOrientation())
+                com.xiaofu.lib.view.drawable.setColors(drawable, getColors())
                 drawable.useLevel = useLevelForGradient
             } else {
                 drawable.color = getSolidColorStateList()

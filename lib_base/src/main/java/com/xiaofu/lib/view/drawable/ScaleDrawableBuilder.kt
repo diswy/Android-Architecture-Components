@@ -1,4 +1,4 @@
-package com.xiaofu.lib.utils.drawable
+package com.xiaofu.lib.view.drawable
 
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.ScaleDrawable

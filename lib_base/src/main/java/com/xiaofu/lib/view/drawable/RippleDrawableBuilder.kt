@@ -1,9 +1,8 @@
-package com.xiaofu.lib.utils.drawable
+package com.xiaofu.lib.view.drawable
 
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.*
-import android.os.Build
 import android.util.StateSet
 
 class RippleDrawableBuilder : DrawableWrapperBuilder<RippleDrawableBuilder>() {
@@ -43,7 +42,7 @@ class RippleDrawableBuilder : DrawableWrapperBuilder<RippleDrawableBuilder>() {
         }
 
         val rippleDrawable = RippleDrawable(colorStateList, drawable, mask)
-        com.xiaofu.lib.utils.drawable.setRadius(rippleDrawable, radius)
+        com.xiaofu.lib.view.drawable.setRadius(rippleDrawable, radius)
         rippleDrawable.invalidateSelf()
         drawable = rippleDrawable
         return drawable

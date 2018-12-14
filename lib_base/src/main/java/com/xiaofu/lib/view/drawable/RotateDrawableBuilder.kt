@@ -1,4 +1,4 @@
-package com.xiaofu.lib.utils.drawable
+package com.xiaofu.lib.view.drawable
 
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RotateDrawable
@@ -18,12 +18,12 @@ class RotateDrawableBuilder: DrawableWrapperBuilder<RotateDrawableBuilder>() {
     override fun build(): Drawable {
         val rotateDrawable = RotateDrawable()
         drawable?.let {
-            com.xiaofu.lib.utils.drawable.setDrawable(rotateDrawable, it)
+            com.xiaofu.lib.view.drawable.setDrawable(rotateDrawable, it)
             apply {
-                com.xiaofu.lib.utils.drawable.setPivotX(rotateDrawable, pivotX)
-                com.xiaofu.lib.utils.drawable.setPivotY(rotateDrawable, pivotY)
-                com.xiaofu.lib.utils.drawable.setFromDegrees(rotateDrawable, fromDegrees)
-                com.xiaofu.lib.utils.drawable.setToDegrees(rotateDrawable, toDegrees)
+                com.xiaofu.lib.view.drawable.setPivotX(rotateDrawable, pivotX)
+                com.xiaofu.lib.view.drawable.setPivotY(rotateDrawable, pivotY)
+                com.xiaofu.lib.view.drawable.setFromDegrees(rotateDrawable, fromDegrees)
+                com.xiaofu.lib.view.drawable.setToDegrees(rotateDrawable, toDegrees)
             }
         }
         return rotateDrawable

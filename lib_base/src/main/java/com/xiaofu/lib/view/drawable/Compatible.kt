@@ -1,6 +1,5 @@
-package com.xiaofu.lib.utils.drawable
+package com.xiaofu.lib.view.drawable
 
-import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
